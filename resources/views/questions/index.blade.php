@@ -15,7 +15,7 @@
             @foreach($questions as $question)
             <div class="card mt-2 mb-2">
                 <div class="card-body">
-                    <h4 class="card-title">{{$question->title}}</h4>
+                    <h4 class="card-title"><a href="{{url('/'.$question->id)}}">{{$question->title}}</a></h4>
                     <p class="card-text">{{$question->description}}</p>
                 </div>
                 <div class="card-footer">
