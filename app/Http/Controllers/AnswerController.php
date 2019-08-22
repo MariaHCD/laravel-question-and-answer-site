@@ -9,27 +9,17 @@ use App\Http\Requests\StoreAnswer;
 class AnswerController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Question $question)
-    {
-        return $question->answers()->orderBy('created_at', 'desc');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreAnswer $request)
+    public function store(StoreAnswer $request, Question $question)
     {
         $answer = new Answer($request->validated());
 
-        $answer->save();
+        $question->answers()->save($answer);
 
-        return redirect('/question/' . $answer->question->id)->with('success', __('answer.created'));
+        return redirect('/questions/' . $answer->question->id)->with('success', __('messages.answer.created'));
     }
 }

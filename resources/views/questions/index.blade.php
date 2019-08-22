@@ -3,29 +3,36 @@
 @section('main')
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-10 offset-sm-1">
             <form action="{{ route('questions.store') }}" autocomplete="off" class="form-horizontal" method="post"
                 accept-charset="utf-8">
                 {{ csrf_field() }}
                 <div class="input-group">
-                    <input name="question" value="{{ old('question') }}" class="form-control" type="text">
+                    <input name="question" value="{{ old('question') }}"
+                        class="form-control {{ $errors->has('question') ? 'is-invalid' : '' }}" type="text">
                     <button type="submit" class="btn btn-primary mb-2">Post Question</button>
                 </div>
+                <div class="text-center">
+                    @if ($errors->has('question'))
+                    <span class="text-danger">{{ $errors->first('question') }}</span>
+                    @endif
+                    @if(session()->get('success'))
+                    <div class="text-success">
+                        {{ session()->get('success') }}
+                    </div>
+                    @endif
+                </div>
             </form>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-sm-10 offset-sm-1">
             @foreach($questions as $question)
-            <div class="card mt-2 mb-2">
+            <div class="card mt-4 mb-4">
                 <div class="card-body">
-                    <h4 class="card-title m-0"><a href="{{url('/questions/'.$question->id)}}">{{$question->question}}</a></h4>
+                    <h4 class="card-title m-0"><a
+                            href="{{url('/questions/'.$question->id)}}">{{$question->question}}</a></h4>
                 </div>
                 <div class="card-footer">
                     <div class="row">

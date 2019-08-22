@@ -20,16 +20,6 @@ class QuestionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('questions.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -41,7 +31,7 @@ class QuestionController extends Controller
 
         $question->save();
 
-        return redirect('/questions')->with('success', __('question.created'));
+        return redirect('/questions')->with('success', __('messages.question.created'));
     }
 
     /**
