@@ -8,7 +8,7 @@
                 accept-charset="utf-8">
                 {{ csrf_field() }}
                 <div class="input-group">
-                    <input name="question" value="{{ old('question') }}"
+                    <input name="question" value="{{ old('question') }}" placeholder="{{$placeholder}}"
                         class="form-control {{ $errors->has('question') ? 'is-invalid' : '' }}" type="text">
                     <button type="submit" class="btn btn-primary mb-2">Post Question</button>
                 </div>

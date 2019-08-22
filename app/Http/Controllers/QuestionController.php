@@ -16,7 +16,7 @@ class QuestionController extends Controller
     {
         $questions = Question::with('answers')->orderBy('created_at', 'desc')->get();
 
-        return view('questions.index', compact('questions'));
+        return view('questions.index', compact('questions'))->with('placeholder', $this->getRandomQuestion());
     }
 
     /**
@@ -43,5 +43,19 @@ class QuestionController extends Controller
     public function show(Question $question)
     {
         return view('questions.view', ['question' => $question]);
+    }
+
+    /**
+     * Retrieve a random question to display as a placeholder
+     */
+    private function getRandomQuestion(): string
+    {
+        $jsonString = file_get_contents(base_path('resources/lang/en/questions.json'));
+
+        $data = json_decode($jsonString, true);
+
+        $index = array_rand($data);
+
+        return $data[$index];
     }
 }
