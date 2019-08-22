@@ -11,7 +11,7 @@ class Question extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['question'];
 
     /**
      * The answers related to this question

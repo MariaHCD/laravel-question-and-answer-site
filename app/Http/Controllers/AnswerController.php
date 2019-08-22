@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Answer;
-use App\Http\Requests\StoreAnswer;
 use App\Question;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreAnswer;
 
 class AnswerController extends Controller
 {
@@ -30,5 +29,7 @@ class AnswerController extends Controller
         $answer = new Answer($request->validated());
 
         $answer->save();
+
+        return redirect('/question/' . $answer->question->id)->with('success', __('answer.created'));
     }
 }

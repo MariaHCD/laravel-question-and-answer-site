@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'QuestionController@index');
-Route::get('/{question}', 'QuestionController@show');
+Route::resource('questions', 'QuestionController');

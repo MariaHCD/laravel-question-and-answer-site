@@ -7,7 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Question::class, function (Faker $faker) {
     return [
-        'title' => substr($faker->sentence(4), 0, -1) . '?',
-        'description' => $faker->text()
+        'question' => substr($faker->sentence(4), 0, -1) . '?'
     ];
 });

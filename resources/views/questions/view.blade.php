@@ -3,9 +3,8 @@
 @section('main')
 <div class="container">
     <div class="row">
-        <div class="col-sm-12">
-            <h2 class="mt-5 text-center">{{$question->title}}</h2>
-            <p>{{$question->description}}</p>
+        <div class="col-sm-12 p-0">
+            <h3 class="mt-2 mb-4 text-center">{{$question->question}}</h3>
 
             @if ($question->answers->count() === 0)
             <div class="card mt-4 mb-4 text-center">

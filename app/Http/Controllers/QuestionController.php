@@ -40,6 +40,8 @@ class QuestionController extends Controller
         $question = new Question($request->validated());
 
         $question->save();
+
+        return redirect('/questions')->with('success', __('question.created'));
     }
 
     /**

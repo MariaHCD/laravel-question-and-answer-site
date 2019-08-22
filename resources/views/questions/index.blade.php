@@ -4,19 +4,28 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
-            <h2 class="mt-5 text-center">Ask a Question</h2>
-            <form action="" autocomplete="off" class="form-horizontal" method="post" accept-charset="utf-8">
+            <form action="{{ route('questions.store') }}" autocomplete="off" class="form-horizontal" method="post"
+                accept-charset="utf-8">
+                {{ csrf_field() }}
                 <div class="input-group">
-                    <input name="searchtext" value="" class="form-control" type="text">
-                    <button type="button" class="btn btn-primary mb-2">Post Question</button>
+                    <input name="question" value="{{ old('question') }}" class="form-control" type="text">
+                    <button type="submit" class="btn btn-primary mb-2">Post Question</button>
                 </div>
             </form>
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
 
             @foreach($questions as $question)
             <div class="card mt-2 mb-2">
                 <div class="card-body">
-                    <h4 class="card-title"><a href="{{url('/'.$question->id)}}">{{$question->title}}</a></h4>
-                    <p class="card-text">{{$question->description}}</p>
+                    <h4 class="card-title m-0"><a href="{{url('/questions/'.$question->id)}}">{{$question->question}}</a></h4>
                 </div>
                 <div class="card-footer">
                     <div class="row">
